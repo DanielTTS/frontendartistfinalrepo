@@ -1,25 +1,38 @@
 import React from 'react';
 import './App.css';
-
+import { BrowserRouter as Router, Switch, Route, Link as RouterLink } from 'react-router-dom';
+import ArtistEntries from './components/ShowArtistEntry'
   class App extends React.Component {
     constructor(){
       super()
       this.state ={
-          artists:[]
+          artistEntry:[]
       }
     }
-    componentDidMount(){
-      fetch("http://localhost:3000/artists")
+    fetchArtists=()=>{
+      fetch("http://localhost:8080/artists")
       .then((res)=> res.json())
-      .then((response)=>{
-        console.log(response);
+      .then((artists)=>{
+       this.setState({artistEntry: artists});
       });
     }
+    componentDidMount(){
+      this.fetchArtists();
+    }
+
   render(){
     return (
-      <div>
-        Yo what's good!!!!!!
-      </div>
+      <Router>
+        <nav>
+        </nav>
+        <div id="content_body">
+          <Switch>
+          <Route exact path="">
+            <ArtistEntries />
+          </Route>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
