@@ -4,7 +4,7 @@ const ShowArtistEntry=(props)=>{
   let artistEntryElArr = props.artistEntry.map((entry, index)=>{
     return(
       <ul key={index}>
-        <li>Artist: {entry.artistName}</li> 
+        <li>Artist: {entry.artistName}</li>
         <li>Album: {entry.albumName}</li>
         <li>Album Release: {entry.albumYear}</li>
       </ul>
